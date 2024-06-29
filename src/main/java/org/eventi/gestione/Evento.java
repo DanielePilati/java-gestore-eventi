@@ -63,6 +63,13 @@ public class Evento {
 			}
 		}	
 	}
+	public void prenota(int numOfPrenotazioni) {												// faccio un overload del metodo per comodità nel test sul main
+		for (int i = 0; i < numOfPrenotazioni; i++) {
+			this.postiPrenotati++;
+		}
+		System.out.println("Posti Prenotati: " + numOfPrenotazioni);	
+		System.out.println("Posti Disponibili: " + (this.postiTotali-this.postiPrenotati));
+	}
 																								// rimuove un posto prenotato
 	public void disdici(Date data) {  
 		if (data.before(Calendar.getInstance().getTime())) {	
