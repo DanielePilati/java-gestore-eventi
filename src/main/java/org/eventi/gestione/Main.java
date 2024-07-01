@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Evento event;
+	/*	Evento event;
 		String eventName;
 		int eventTickets;
 		Date eventDate;
@@ -30,21 +30,23 @@ public class Main {
 		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
 		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
 		event = new Evento(eventName, eventDate, eventTickets);
-		System.out.println("--| Il tuo evento è stato Istanziato");
-		
+		System.out.println("--| Il tuo evento è stato Istanziato");		
 																											// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
 		if (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N")) {										
 			userBookNum = Main.requestNumberInt("Inserisci il numero di prenotazioni che vuoi effettuare: ");
 			event.prenota(userBookNum);
 			event.checkPosti();
-		}
-			
+		}			
 																											// Chiedere all’utente se e quanti posti vuole disdire e provare ad effettuarle	
 		if (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N")) {											
 			userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
 			event.disdici(userBookNum);
 			event.checkPosti();
-		}	
+		}
+	*/	
+		
+		
+		
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
 	public static Date addInputDate() {																		
@@ -61,22 +63,27 @@ public class Main {
 		return date.getTime();
 	}
 																											// invia su terminale una richiesta e restituisce il valore preso in input.
-	public static int requestNumberInt(String request) {													
+	public static int requestNumberInt(String request) {
+		
 		System.out.println(request);
 		int number = scanner.nextInt();
 		scanner.nextLine();
+		
 		return number;
 	}
-	public static String requestString(String request) {		
+	public static String requestString(String request) {	
+		
 		System.out.println(request);
 		String string = scanner.nextLine();
+		
 		return string;
 	}
 																											// chiede all'utente se vuole effettuare una prenotazione o no.
 	public static boolean wantDoIt(String request) {
+		
 		boolean want = false;
-	
 		String renspose = Main.requestString(request).toUpperCase();
+		
 		while (true) {
 			if (renspose.equals("S")) {
 				want = true;
@@ -91,7 +98,6 @@ public class Main {
 				Main.requestString("-| inserisci S o N |-").toUpperCase();
 			}
 		}
-	
 		return want;
 	}
 	
