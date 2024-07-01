@@ -118,9 +118,14 @@ public class Evento implements Comparable<Evento> {
 		return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	
-	@Override
-	public int compareTo(Evento o) {	
-		return 0;
+	@Override																					// override del metodo dell'interfaccia
+	public int compareTo(Evento otherEvent) {	
+		
+		if(this.equals(otherEvent)) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 }
