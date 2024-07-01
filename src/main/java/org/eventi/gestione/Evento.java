@@ -63,13 +63,24 @@ public class Evento {
 			}
 		}	
 	}
-	public void prenota(int numOfPrenotazioni) {												// faccio un overload del metodo per comodità nel test sul main
-		for (int i = 0; i < numOfPrenotazioni; i++) {
-			this.postiPrenotati++;
-		}
-		System.out.println("Posti Prenotati: " + numOfPrenotazioni);	
-		System.out.println("Posti Disponibili: " + (this.postiTotali-this.postiPrenotati));
+																								// faccio un overload del metodo prendendo in input il numero di prenotazioni da effettuare sul test nel main
+	public void prenota(int number) {
+		int postiLiberi = this.postiTotali - this.postiPrenotati;
+		if (postiLiberi >= number) {
+			this.postiPrenotati += number;
+			System.out.println("Posti Prenotato");
+		} else {
+			System.out.println("non ci sono posti disponibili");
+			}																						
 	}
+																								// metodo per Stampare a video il numero di posti prenotati e quelli disponibili
+	public void checkPosti() {
+		System.out.println("Posti Totali: " + this.postiTotali);
+		System.out.println("Posti Prenotati: " + this.postiPrenotati);
+		System.out.println("Posti Disponibili: " + (this.postiTotali - this.postiPrenotati));
+	}
+	
+	
 																								// rimuove un posto prenotato
 	public void disdici(Date data) {  
 		if (data.before(Calendar.getInstance().getTime())) {	
@@ -82,6 +93,16 @@ public class Evento {
 				System.out.println("Non ci sono prenotazioni");									//  non ci sono prenotazioni restituisce un messaggio di avviso.
 			}
 		}	
+	}
+	
+																								// faccio un overload del metodo prendendo in input il numero di prenotazioni da disdire sul test nel main
+	public void disdici(int number) {
+		if (this.postiPrenotati >= number) {
+			this.postiPrenotati -= number;
+			System.out.println("Posti Disdetti");
+		} else {
+			System.out.println("Ci sono solo " + this.postiPrenotati + " posti prenotati");
+		}																						
 	}
 
 	@Override   																				// l’override del metodo toString() 
