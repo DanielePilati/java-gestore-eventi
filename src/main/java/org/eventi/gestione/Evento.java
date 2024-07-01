@@ -1,20 +1,27 @@
 package org.eventi.gestione;
 
-import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Evento {
 	
 	private String titolo;
-	private Date data;
+	private LocalDate data;
 	private int postiTotali;
 	private int postiPrenotati = 0;  															// tranne posti prenotati che va inizializzato a 0.	
-																								
-	public Evento(String titolo, Date data, int postiTotali) {									//Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore
+							
+	/**
+	 * 
+	 * @param titolo
+	 * @param data
+	 * @param postiTotali
+	 */
+	public Evento(String titolo, LocalDate data, int postiTotali) {									//Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore
 		this.setTitolo(titolo);
 				
-		if (!data.before(Calendar.getInstance().getTime())) {  									// Inserire il controllo che la data non sia già passata
+		if (!data.equals(LocalDate.now())) {  									// Inserire il controllo che la data non sia già passata
 			this.data = data;		
 		} else {
 			System.out.println("la data è passata");
@@ -35,11 +42,11 @@ public class Evento {
 		this.titolo = titolo;
 	}
 																								// data sia in lettura e scrittura
-	public Date getData() {
+	public LocalDate getData() {
 		return this.data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 																								//	numero di posti totale sia solo in lettura
@@ -107,7 +114,12 @@ public class Evento {
 
 	@Override   																				// l’override del metodo toString() 
 	public String toString() { 
-		return DateFormat.getInstance().format(this.data) + " - "+ this.titolo;   				// in modo che venga restituita una stringa contenente: data formattata - titolo
+		return this.dateFormatter(this.data) + " - "+ this.titolo;   				// in modo che venga restituita una stringa contenente: data formattata - titolo
+	}
+	
+																								// aggiunto metodo per formattare la data
+	public String dateFormatter (LocalDate date) {								
+			return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
 }

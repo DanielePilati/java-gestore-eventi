@@ -1,26 +1,35 @@
 package org.eventi.gestione;
 
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Concerto extends Evento {
 
-	private Time ora;
+	private LocalTime ora;
 	private double prezzo;
 	
-	public Concerto(String titolo, Date data, int postiTotali, Time ora, double prezzo) {                  	// Aggiungere gli attributi nel costruttore 
+	/**
+	 * 
+	 * @param titolo
+	 * @param data
+	 * @param postiTotali
+	 * @param ora
+	 * @param prezzo
+	 */
+	public Concerto(String titolo, LocalDate data, int postiTotali, LocalTime ora, double prezzo) {                  	// Aggiungere gli attributi nel costruttore 
 		super(titolo, data, postiTotali);
-		this.setOra(ora);
-		this.setPrezzo(prezzo);
+		this.ora = ora;
+		this.prezzo = prezzo;
 	}
 																											//implementarne getter e setter.
-	public Time getOra() {
-		return ora;
+	public LocalTime getOra() {
+		return this.ora;
 	}
 
-	public void setOra(Time ora) {
+	public void setOra(LocalTime ora) {
 		this.ora = ora;
 	}
 
@@ -31,13 +40,10 @@ public class Concerto extends Evento {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
-
-	// TODO Aggiungere i metodi per restituire data e ora formattata e prezzo formattato (##,##€) 
-	
 	
 	@Override   																							// l’override del metodo toString() 
 	public String toString() { 	
-		return DateFormat.getInstance().format(this.getData()) + " - "+ this.getTitolo( )+ " - "+ this.priceFormatter(this.prezzo);   
+		return this.dateTimeFormatter(super.getData(), this.ora) + " - " + super.getTitolo() + " - " + this.priceFormatter(this.prezzo);   
 		// in modo che venga restituita una stringa del tipo:  data e ora formattata - titolo - prezzo formattato
 	}
 	
@@ -45,6 +51,10 @@ public class Concerto extends Evento {
 		DecimalFormat decfor = new DecimalFormat("0.00");  
 		return  decfor .format(prezzo);
 	}
-
+																											//  metodo per formattare anche l'ora
+	public String dateTimeFormatter (LocalDate date, LocalTime time) {
+		LocalDateTime dateTime = time.atDate(date);
+		return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+	}
 
 }
