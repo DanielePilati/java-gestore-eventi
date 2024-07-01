@@ -84,7 +84,7 @@ public class Evento {
 																								// rimuove un posto prenotato
 	public void disdici(Date data) {  
 		if (data.before(Calendar.getInstance().getTime())) {	
-			System.out.println("L'evento è gia passato");										// Se l’evento è già passato deve restituire un messaggio di avviso
+			System.out.println("-| L'evento è gia passato");										// Se l’evento è già passato deve restituire un messaggio di avviso
 		} else {
 			if (this.postiPrenotati > 0 ) {		
 				this.postiPrenotati++;

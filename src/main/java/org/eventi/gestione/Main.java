@@ -15,13 +15,13 @@ public class Main {
 		int eventTickets;
 		Date eventDate;
 		int userBookNum;
-			
+																											// chiedere all’utente di inserire una Data con tutti i parametri.
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
 		System.out.println("-| Prima di tutto inseriamo la data");
 		while (true) {
 			eventDate = Main.addInputDate();
 			if (eventDate.before(Calendar.getInstance().getTime())) {
-				System.out.println("Data Passata");	
+				System.out.println("-| Data Passata |-");	
 			} else {
 				break;
 			}
@@ -33,15 +33,15 @@ public class Main {
 		System.out.println("--| Il tuo evento è stato Istanziato");
 		
 																											// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
-		if (Main.wantDoIt("Vuoi effettuare una o piu prenotazioni? S / N")) {										
-			userBookNum = Main.requestNumberInt("Inserisci il numero di prenotazioni che vuoi effettuare");
+		if (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N")) {										
+			userBookNum = Main.requestNumberInt("Inserisci il numero di prenotazioni che vuoi effettuare: ");
 			event.prenota(userBookNum);
 			event.checkPosti();
 		}
 			
 																											// Chiedere all’utente se e quanti posti vuole disdire e provare ad effettuarle	
-		if (Main.wantDoIt("Vuoi disdire una o piu prenotazioni? S / N")) {											
-			userBookNum = Main.requestNumberInt("Inserisci il numero di prenotazioni che vuoi disdire");
+		if (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N")) {											
+			userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
 			event.disdici(userBookNum);
 			event.checkPosti();
 		}	
@@ -60,7 +60,7 @@ public class Main {
 		
 		return date.getTime();
 	}
-																														// invia su terminale una richiesta e restituisce il valore preso in input.
+																											// invia su terminale una richiesta e restituisce il valore preso in input.
 	public static int requestNumberInt(String request) {													
 		System.out.println(request);
 		int number = scanner.nextInt();
@@ -72,7 +72,7 @@ public class Main {
 		String string = scanner.nextLine();
 		return string;
 	}
-																														// chiede all'utente se vuole effettuare una prenotazione o no.
+																											// chiede all'utente se vuole effettuare una prenotazione o no.
 	public static boolean wantDoIt(String request) {
 		boolean want = false;
 	
@@ -83,12 +83,12 @@ public class Main {
 				break;
 			} 
 			if (renspose.equals("N")) {
-				System.out.println("hai inserito N");
-				System.out.println("Chiusura applicazione");
+				System.out.println("-| hai inserito N |-");
+				System.out.println("-| Chiusura applicazione |-");
 				want = false ;
 				break;
 			} else {
-				Main.requestString("inserisci S o N").toUpperCase();
+				Main.requestString("-| inserisci S o N |-").toUpperCase();
 			}
 		}
 	
