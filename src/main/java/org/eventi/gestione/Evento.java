@@ -5,28 +5,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Evento {
+public class Evento implements Comparable<Evento> {
 	
 	private String titolo;
 	private LocalDate data;
 	private int postiTotali;
 	private int postiPrenotati = 0;  															// tranne posti prenotati che va inizializzato a 0.	
 							
-	/**
-	 * 
-	 * @param titolo
-	 * @param data
-	 * @param postiTotali
-	 */
-	public Evento(String titolo, LocalDate data, int postiTotali) {									//Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore
-		this.setTitolo(titolo);
+	public Evento(String titolo, LocalDate data, int postiTotali) {								//Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore
+		
+		this.titolo = titolo;;
 				
-		if (!data.equals(LocalDate.now())) {  									// Inserire il controllo che la data non sia già passata
+		if (!data.equals(LocalDate.now())) {  													// Inserire il controllo che la data non sia già passata
 			this.data = data;		
 		} else {
 			System.out.println("la data è passata");
 		}
-		
 		if(postiTotali > 0) { 																	// Controllo che il numero di posti totali sia positivo.
 			this.postiTotali = postiTotali;
 		} else {																				// In caso contrario mostrare i dovuti avvisi all’utente
@@ -59,6 +53,7 @@ public class Evento {
 	}
 																								// aggiunge un posto prenotato
 	public void prenota(Date data) { 
+		
 		if (data.before(Calendar.getInstance().getTime())) {	
 			System.out.println("L'evento è gia passato");										// Se l’evento è già passato deve restituire un messaggio di avviso
 		} else {
@@ -72,7 +67,9 @@ public class Evento {
 	}
 																								// faccio un overload del metodo prendendo in input il numero di prenotazioni da effettuare sul test nel main
 	public void prenota(int number) {
+		
 		int postiLiberi = this.postiTotali - this.postiPrenotati;
+		
 		if (postiLiberi >= number) {
 			this.postiPrenotati += number;
 			System.out.println("Posti Prenotato");
@@ -82,14 +79,14 @@ public class Evento {
 	}
 																								// metodo per Stampare a video il numero di posti prenotati e quelli disponibili
 	public void checkPosti() {
+		
 		System.out.println("Posti Totali: " + this.postiTotali);
 		System.out.println("Posti Prenotati: " + this.postiPrenotati);
 		System.out.println("Posti Disponibili: " + (this.postiTotali - this.postiPrenotati));
 	}
-	
-	
 																								// rimuove un posto prenotato
 	public void disdici(Date data) {  
+		
 		if (data.before(Calendar.getInstance().getTime())) {	
 			System.out.println("-| L'evento è gia passato");										// Se l’evento è già passato deve restituire un messaggio di avviso
 		} else {
@@ -101,9 +98,9 @@ public class Evento {
 			}
 		}	
 	}
-	
 																								// faccio un overload del metodo prendendo in input il numero di prenotazioni da disdire sul test nel main
 	public void disdici(int number) {
+		
 		if (this.postiPrenotati >= number) {
 			this.postiPrenotati -= number;
 			System.out.println("Posti Disdetti");
@@ -114,12 +111,16 @@ public class Evento {
 
 	@Override   																				// l’override del metodo toString() 
 	public String toString() { 
-		return this.dateFormatter(this.data) + " - "+ this.titolo;   				// in modo che venga restituita una stringa contenente: data formattata - titolo
+		return this.dateFormatter(this.data) + " - "+ this.titolo;   							// in modo che venga restituita una stringa contenente: data formattata - titolo
 	}
-	
 																								// aggiunto metodo per formattare la data
 	public String dateFormatter (LocalDate date) {								
-			return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	}
+	
+	@Override
+	public int compareTo(Evento o) {	
+		return 0;
 	}
 
 }

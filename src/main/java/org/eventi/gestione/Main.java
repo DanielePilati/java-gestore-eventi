@@ -45,9 +45,19 @@ public class Main {
 			event.disdici(userBookNum);
 			event.checkPosti();
 		}
-		
+																											// test classe Concerto
 		Concerto concerto = new Concerto("azzo", addInputDate(), 10, addInputTime(), 20.50 );	
 		System.out.println(concerto.toString());
+																											// test classe ProgrammaEventi
+		ProgrammaEventi programma = new ProgrammaEventi("Lancio del Corriandolo");
+		System.out.println(programma.toString());
+		programma.addEvent(event);
+		programma.addEvent(concerto);
+		programma.searchEventFromDate(eventDate);
+		System.out.println("ci sono " + programma.howManyEvents() + " Eventi");
+		System.out.println(programma.toString());
+		programma.resetEventList();
+		System.out.println(programma.toString());
 		
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
@@ -68,8 +78,7 @@ public class Main {
 		
 		return time;
 	}
-	
-	// invia su terminale una richiesta e restituisce il valore preso in input.
+																											// invia su terminale una richiesta e restituisce il valore intero preso in input.
 	public static int requestNumberInt(String request) {
 		
 		System.out.println(request);
@@ -78,6 +87,7 @@ public class Main {
 		
 		return number;
 	}
+																											// invia su terminale una richiesta e restituisce il valore Stringa preso in input.
 	public static String requestString(String request) {	
 		
 		System.out.println(request);

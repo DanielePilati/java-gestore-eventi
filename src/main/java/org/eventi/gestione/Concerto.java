@@ -11,15 +11,7 @@ public class Concerto extends Evento {
 	private LocalTime ora;
 	private double prezzo;
 	
-	/**
-	 * 
-	 * @param titolo
-	 * @param data
-	 * @param postiTotali
-	 * @param ora
-	 * @param prezzo
-	 */
-	public Concerto(String titolo, LocalDate data, int postiTotali, LocalTime ora, double prezzo) {                  	// Aggiungere gli attributi nel costruttore 
+	public Concerto(String titolo, LocalDate data, int postiTotali, LocalTime ora, double prezzo) {         // Aggiungere gli attributi nel costruttore 
 		super(titolo, data, postiTotali);
 		this.ora = ora;
 		this.prezzo = prezzo;
@@ -48,13 +40,17 @@ public class Concerto extends Evento {
 	}
 	
 	public String priceFormatter (double price) {															// aggiunto metodo per formattare il prezzo
+		
 		DecimalFormat decfor = new DecimalFormat("0.00");  
+		
 		return  decfor .format(prezzo);
 	}
 																											//  metodo per formattare anche l'ora
 	public String dateTimeFormatter (LocalDate date, LocalTime time) {
+		
 		LocalDateTime dateTime = time.atDate(date);
-		return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		
+		return dateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
 	}
 
 }
