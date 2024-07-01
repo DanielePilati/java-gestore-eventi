@@ -35,7 +35,7 @@ public class Main {
 		System.out.println(event.toString());
 																											// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
 		if (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N")) {										
-			userBookNum = Main.requestNumberInt("Inserisci il numero di prenotazioni che vuoi effettuare: ");
+			userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
 			event.prenota(userBookNum);
 			event.checkPosti();
 		}			
@@ -45,7 +45,7 @@ public class Main {
 			event.disdici(userBookNum);
 			event.checkPosti();
 		}
-																											// test classe Concerto
+/*																											// test classe Concerto
 		Concerto concerto = new Concerto("Concertazzo", addInputDate(), 10, addInputTime(), 20.50 );	
 		System.out.println(concerto.toString());
 																											// test classe ProgrammaEventi
@@ -58,7 +58,7 @@ public class Main {
 		System.out.println(programma.toString());
 		programma.resetEventList();
 		System.out.println(programma.toString());
-		
+*/	
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
 	public static LocalDate addInputDate() {																		
