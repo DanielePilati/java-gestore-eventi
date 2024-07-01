@@ -46,7 +46,7 @@ public class Main {
 			event.checkPosti();
 		}
 																											// test classe Concerto
-		Concerto concerto = new Concerto("azzo", addInputDate(), 10, addInputTime(), 20.50 );	
+		Concerto concerto = new Concerto("Concertazzo", addInputDate(), 10, addInputTime(), 20.50 );	
 		System.out.println(concerto.toString());
 																											// test classe ProgrammaEventi
 		ProgrammaEventi programma = new ProgrammaEventi("Lancio del Corriandolo");
@@ -107,7 +107,6 @@ public class Main {
 				break;
 			} 
 			if (renspose.equals("N")) {
-				System.out.println("-| hai inserito N |-");
 				want = false ;
 				break;
 			} else {
