@@ -47,7 +47,7 @@ public class Main {
 		}
 		
 		System.out.println("****\\ Fine Step 2 //****");
-																											// test delle classi
+																											// test delle classi Concerto e ProgrammaEventi
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
 		System.out.println("-------------------------");
 		System.out.println("-- Benvenuto Nella gestione concerti");
