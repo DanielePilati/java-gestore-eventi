@@ -78,5 +78,11 @@ public class ProgrammaEventi {
 		}
 		return sequence ;
 	}
-
+	
+	public List<Evento> getEventi() {
+		return this.eventi;
+	}
+	public void setEventi(ArrayList<Evento> eventi) {
+		this.eventi = eventi;
+	}
 }

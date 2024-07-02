@@ -45,7 +45,7 @@ public class Main {
 		System.out.println("ci sono " + listaConcerti.howManyEvents() + " eventi nella lista");
 		System.out.println(listaConcerti.toString());
 		
-		while (wantDoIt("-| Vuoi effettuare o disdire prenotazioni? S / N","S","N")) {
+		if (wantDoIt("-| Vuoi effettuare o disdire prenotazioni? S / N","S","N")) {
 			addRemoveBook(listaConcerti);
 		}
 	}
@@ -237,11 +237,12 @@ public class Main {
 				
 		System.out.println("-| Inserisci la data del Concerto a cui devi partecipare: ");
 		LocalDate date = Main.addInputDate();
-		ArrayList<Evento> checkList = programma.searchEventFromDate(date);
-		System.out.println(checkList.toString());
+		ProgrammaEventi temp = new ProgrammaEventi("Temporaneo");
+		temp.setEventi(programma.searchEventFromDate(date));
+		System.out.println(temp.toString());
 
 		int code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
-		for (Evento evento : checkList) {		
+		for (Evento evento : temp.getEventi()) {		
 			if (evento.getCodice() == code) {
 				System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
 				evento.checkPosti();			
