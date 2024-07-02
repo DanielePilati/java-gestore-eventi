@@ -120,7 +120,7 @@ public class Main {
 																											// verifico se viene messa l'ora correttamente
 		while(!isOk) {
 			eventHour = Main.requestNumberInt("-| Inserisci l'Ora (in numeri) : ");
-			if (eventHour == 0 && eventHour <= 24) {
+			if (eventHour <= 24) {
 				isOk = true;
 				break;
 			} else {
@@ -132,7 +132,7 @@ public class Main {
 																											// verifico vengono messi i minuti correttamente 
 		while(!isOk) {
 			eventMinutes = Main.requestNumberInt("-| Inserisci i Minuti (in numeri) : ");
-			if (eventMinutes == 0 && eventMinutes <= 60) {
+			if (eventMinutes <= 60) {
 				isOk = true;
 				break;
 			} else {
