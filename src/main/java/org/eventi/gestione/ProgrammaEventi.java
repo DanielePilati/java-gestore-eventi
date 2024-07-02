@@ -19,7 +19,23 @@ public class ProgrammaEventi {
 	}
 																			// un metodo che aggiunge alla lista un Evento, passato come parametro
 	public void addEvent(Evento event) {
+		
+		boolean isChanged = true;
+		
+		while (!isChanged) {
+			for (Evento evento : this.eventi) {
+				if (evento.getCodice() == event.getCodice()){
+					event.setCodice(Evento.generateRandomCode());
+					isChanged = true;
+				} else {
+					isChanged = false;
+				}
+			}
+		}
+		
 		this.eventi.add(event);
+		
+
 	}
 																			// un metodo che restituisce una lista con tutti gli eventi presenti in una certa data
 	public ArrayList<Evento> searchEventFromDate(LocalDate date) {						

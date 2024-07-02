@@ -2,6 +2,8 @@ package org.eventi.gestione;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -9,24 +11,17 @@ public class Main {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
+	/*	
 		Evento event;
 		String eventName;
 		int eventTickets;
 		LocalDate eventDate;
 		int userBookNum;
-																											// chiedere all’utente di inserire una Data con tutti i parametri.
+																											
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
 		System.out.println("-| Prima di tutto inseriamo la data");
-		while (true) {
-			eventDate = Main.addInputDate();
-			if (eventDate.isBefore(LocalDate.now())) {
-				System.out.println("-| Data Passata |-");	
-			} else {
-				break;
-			}
-		}
-		
+
+		eventDate = Main.addInputDate();																	// chiedere all’utente di inserire una Data con tutti i parametri.
 		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
 		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
 		
@@ -45,7 +40,7 @@ public class Main {
 			event.disdici(userBookNum);
 			event.checkPosti();
 		}
-		
+*/		
 		System.out.println("****\\ Fine Step 2 //****");
 																											// test delle classi Concerto e ProgrammaEventi
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
@@ -55,59 +50,70 @@ public class Main {
 			listaConcerti.addEvent(Main.addConcert());
 		}
 		System.out.println("ci sono " + listaConcerti.howManyEvents() + " eventi nella lista");
-		System.out.println(listaConcerti.toString());
-		while (Main.wantDoIt("--| Vuoi cercare un concerto? S / N")) {											
-			listaConcerti.searchEventFromDate(addInputDate());
-		}																											
+		System.out.println(listaConcerti.toString());											
+		wantAddBook(listaConcerti);
+		wantRemoveBook(listaConcerti);
+		
+		
 		
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
 	public static LocalDate addInputDate() {	
 			
+		LocalDate date;
 		int eventDay = 0;
 		int eventMonth = 0;
 		int eventYear = 0;
 		
-		boolean isOk = false;
-																											// verifico se viene messo un giorno corretto 
-		while(!isOk) {
-			eventDay = Main.requestNumberInt("-| Inserisci il Giorno (in numeri) : ");
-			if (eventDay > 0 && eventDay <= 31) {
-				isOk = true;
-				break;
-			} else {
-				System.out.println("-| Inserisci un Numero da 1 a 31 |-");
-				isOk = false;
+		while (true) {	
+			
+			boolean isOk = false;
+																												// verifico se viene messo un giorno corretto 
+			while(!isOk) {
+				eventDay = Main.requestNumberInt("-| Inserisci il Giorno (in numeri) : ");
+				if (eventDay > 0 && eventDay <= 31) {
+					isOk = true;
+					break;
+				} else {
+					System.out.println("-| Inserisci un Numero da 1 a 31 |-");
+					isOk = false;
+				}
 			}
-		}
-		isOk = false;
-																											// verifico se viene messo il mese corretto 
-		while(!isOk) {
-			eventMonth = Main.requestNumberInt("-| Inserisci il Mese (in numeri) : ");
-			if (eventMonth > 0 && eventMonth <= 12) {
-				isOk = true;
-				break;
-			} else {
-				System.out.println("-| Inserisci un Numero da 1 a 12 |-");
-				isOk = false;
+			isOk = false;
+																												// verifico se viene messo il mese corretto 
+			while(!isOk) {
+				eventMonth = Main.requestNumberInt("-| Inserisci il Mese (in numeri) : ");
+				if (eventMonth > 0 && eventMonth <= 12) {
+					isOk = true;
+					break;
+				} else {
+					System.out.println("-| Inserisci un Numero da 1 a 12 |-");
+					isOk = false;
+				}
 			}
-		}
-		isOk = false;	
-																											// verifico se viene messo un anno reale 
-		while(!isOk) {
-			eventYear = Main.requestNumberInt("-| Inserisci l'Anno (in numeri) : ");
-			if (eventYear <= 3000) {
-				isOk = true;
-				break;
-			} else {
-				System.out.println("-| Inserisci un Anno Reale|-");
-				isOk = false;
+			isOk = false;	
+																												// verifico se viene messo un anno reale 
+			while(!isOk) {
+				eventYear = Main.requestNumberInt("-| Inserisci l'Anno (in numeri) : ");
+				if (eventYear <= 3000) {
+					isOk = true;
+					break;
+				} else {
+					System.out.println("-| Inserisci un Anno Reale|-");
+					isOk = false;
+				}
 			}
-		}
-		isOk = false;
-	
-		LocalDate date = LocalDate.of(eventYear, eventMonth, eventDay);
+			isOk = false;
 		
+			date = LocalDate.of(eventYear, eventMonth, eventDay);
+		
+			if (date.isBefore(LocalDate.now())) {
+				System.out.println("-| Data Passata |-");	
+			} else {
+				break;
+			}
+			
+		}
 		return date;
 	}
 																											// chiede all’utente di inserire l'ora con tutti i parametri.
@@ -239,7 +245,62 @@ public class Main {
 		return event;
 			
 	}
-	
+																									// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
+	public static void wantAddBook(ProgrammaEventi programma) {
+		
+		 int userBookNum = 0;
+		 int code = 0;
+		 LocalDate date;
+		 ArrayList<Evento> checkList;
+		 
+		while (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N")) {
+			
+				System.out.println("-| Inserisci la data del Concerto a cui vuoi partecipare: ");
+				date = Main.addInputDate();
+				checkList = programma.searchEventFromDate(date);
+				System.out.println(checkList.toString());
+				
+				code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
+				for (Evento evento : checkList) {	
+					if (evento.getCodice() == code) {
+						System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
+						evento.checkPosti();
+						userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+						evento.prenota(userBookNum);
+					}
+				}
+				
+		}
+
+	}	
+																									// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
+	public static void wantRemoveBook(ProgrammaEventi programma) {
+
+		int userBookNum = 0;
+		int code = 0;
+		LocalDate date;
+		ArrayList<Evento> checkList;
+
+		while (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N")) {
+		
+			System.out.println("-| Inserisci la data del Concerto a cui devi partecipare: ");
+			date = Main.addInputDate();
+			checkList = programma.searchEventFromDate(date);
+			System.out.println(checkList.toString());
+
+			code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
+			for (Evento evento : checkList) {	
+				if (evento.getCodice() == code) {
+					System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
+					evento.checkPosti();
+					userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+					evento.disdici(userBookNum);
+				}
+			}
+		
+		}
+
+	}
 
 }
 	

@@ -35,7 +35,7 @@ public class Concerto extends Evento {
 	
 	@Override   																							// l’override del metodo toString() 
 	public String toString() { 	
-		return this.dateTimeFormatter(super.getData(), this.ora) + " - " + super.getTitolo() + " - " + this.priceFormatter(this.prezzo);   
+		return this.dateTimeFormatter(super.getData(), this.ora) + " - " + super.getTitolo() + " - " + this.priceFormatter(this.prezzo) + " codice: " + super.getCodice();   
 		// in modo che venga restituita una stringa del tipo:  data e ora formattata - titolo - prezzo formattato
 	}
 	

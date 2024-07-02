@@ -11,8 +11,11 @@ public class Evento implements Comparable<Evento> {
 	private LocalDate data;
 	private int postiTotali;
 	private int postiPrenotati = 0;  															// tranne posti prenotati che va inizializzato a 0.	
-							
+	private int codice;
+	
 	public Evento(String titolo, LocalDate data, int postiTotali) {								//Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore
+		
+		this.codice = Evento.generateRandomCode();
 		
 		this.titolo = titolo;;
 				
@@ -114,7 +117,7 @@ public class Evento implements Comparable<Evento> {
 
 	@Override   																				// l’override del metodo toString() 
 	public String toString() { 
-		return this.dateFormatter(this.data) + " - "+ this.titolo;   							// in modo che venga restituita una stringa contenente: data formattata - titolo
+		return "\n" + this.dateFormatter(this.data) + " - "+ this.titolo + " Codice: " + this.codice;   							// in modo che venga restituita una stringa contenente: data formattata - titolo
 	}
 																								// aggiunto metodo per formattare la data
 	public String dateFormatter (LocalDate date) {								
@@ -130,5 +133,20 @@ public class Evento implements Comparable<Evento> {
 			return 0;
 		}
 	}
+	
+	public int getCodice() {
+		return this.codice;
+	}
+	
+	public void setCodice(int codice) {
+		this.codice = codice;
+	}
+	
+	public static int generateRandomCode() {
+		int code;	
+		code = (int) (Math.random()* (100 - 0) + 1) + 0;
+		return code;
+	}
+
 
 }
