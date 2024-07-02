@@ -74,7 +74,7 @@ public class Evento implements Comparable<Evento> {
 			this.postiPrenotati += number;
 			System.out.println("Posti Prenotato");
 		} else {
-			System.out.println("non ci sono posti disponibili");
+			System.out.println("non ci sono " + number + " posti disponibili");
 			}																						
 	}
 																								// metodo per Stampare a video il numero di posti prenotati e quelli disponibili
