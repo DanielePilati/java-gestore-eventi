@@ -47,22 +47,22 @@ public class Main {
 		}
 		
 		System.out.println("****\\ Fine Step 2 //****");
-
-/*																											// test classe Concerto
-		Concerto concerto = new Concerto("Concertazzo", addInputDate(), 10, addInputTime(), 20.50 );	
-		System.out.println(concerto.toString());
-				System.out.println(event.compareTo(event));
-																											// test classe ProgrammaEventi
-		ProgrammaEventi programma = new ProgrammaEventi("Lancio del Corriandolo");
-		System.out.println(programma.toString());
-		programma.addEvent(event);
-		programma.addEvent(concerto);
-		programma.searchEventFromDate(eventDate);
-		System.out.println("ci sono " + programma.howManyEvents() + " Eventi");
-		System.out.println(programma.toString());
-		programma.resetEventList();
-		System.out.println(programma.toString());
-*/	
+																											// test delle classi
+		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
+		System.out.println("-------------------------");
+		System.out.println("-- Benvenuto Nella gestione concerti");
+		while (Main.wantDoIt("--| Vuoi inserire un nuovo concerto? S / N")) {											
+			listaConcerti.addEvent(Main.addConcert());
+		}
+		System.out.println("ci sono " + listaConcerti.howManyEvents() + " eventi nella lista");
+		System.out.println(listaConcerti.toString());
+		while (Main.wantDoIt("--| Vuoi cercare un concerto? S / N")) {											
+			listaConcerti.searchEventFromDate(addInputDate());
+		}
+		
+		
+		
+		
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
 	public static LocalDate addInputDate() {	
@@ -74,7 +74,7 @@ public class Main {
 		boolean isOk = false;
 																											// verifico se viene messo un giorno corretto 
 		while(!isOk) {
-			eventDay = Main.requestNumberInt("-| Si terrà il Giorno (in numeri) : ");
+			eventDay = Main.requestNumberInt("-| Inserisci il Giorno (in numeri) : ");
 			if (eventDay > 0 && eventDay <= 31) {
 				isOk = true;
 				break;
@@ -86,7 +86,7 @@ public class Main {
 		isOk = false;
 																											// verifico se viene messo il mese corretto 
 		while(!isOk) {
-			eventMonth = Main.requestNumberInt("-| Del Mese (in numeri) : ");
+			eventMonth = Main.requestNumberInt("-| Inserisci il Mese (in numeri) : ");
 			if (eventMonth > 0 && eventMonth <= 12) {
 				isOk = true;
 				break;
@@ -98,7 +98,7 @@ public class Main {
 		isOk = false;	
 																											// verifico se viene messo un anno reale 
 		while(!isOk) {
-			eventYear = Main.requestNumberInt("-| Nell'Anno (in numeri) : ");
+			eventYear = Main.requestNumberInt("-| Inserisci l'Anno (in numeri) : ");
 			if (eventYear <= 3000) {
 				isOk = true;
 				break;
@@ -115,8 +115,36 @@ public class Main {
 	}
 																											// chiede all’utente di inserire l'ora con tutti i parametri.
 	public static LocalTime addInputTime() {
-		int eventHour = Main.requestNumberInt("-| Inserisci Ora (in numeri) : ");
-		int eventMinutes = Main.requestNumberInt("-| E Minuti (in numeri) : ");
+		
+		int eventHour = 0;
+		int eventMinutes = 0;
+		
+		boolean isOk = false;
+																											// verifico se viene messa l'ora correttamente
+		while(!isOk) {
+			eventHour = Main.requestNumberInt("-| Inserisci l'Ora (in numeri) : ");
+			if (eventHour >= 0 && eventHour <= 24) {
+				isOk = true;
+				break;
+			} else {
+				System.out.println("-| Inserisci un Numero da 0 a 24 |-");
+				isOk = false;
+			}
+		}
+		isOk = false;	
+																											// verifico vengono messi i minuti correttamente 
+		while(!isOk) {
+			eventMinutes = Main.requestNumberInt("-| Inserisci i Minuti (in numeri) : ");
+			if (eventMinutes >= 0 && eventMinutes <= 60) {
+				isOk = true;
+				break;
+			} else {
+				System.out.println("-| Inserisci un Numero da 0 a 60 |-");
+				isOk = false;
+			}
+		}
+		isOk = false;
+		
 		LocalTime time = LocalTime.of(eventHour, eventMinutes);
 		
 		return time;
@@ -165,5 +193,41 @@ public class Main {
 		}
 		return want;  
 	}
+																													// **** metodi aggiuntivi *****
+																													// creo un metodo per creare un Concerto
+	public static Concerto addConcert() {
+		
+		Concerto event;
+		String eventName;
+		LocalDate eventDate;
+		LocalTime eventTime;
+		int eventTickets;
+		double eventPrice;
+																											
+		System.out.println("--| Benvenuto nella creazione del Concerto");
+		System.out.println("-| Prima di tutto inseriamo la data");
+		while (true) {
+			eventDate = Main.addInputDate();
+			if (eventDate.isBefore(LocalDate.now())) {
+				System.out.println("-| Data Passata |-");	
+			} else {
+				break;
+			}
+		}
+		eventTime = Main.addInputTime();
+		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
+		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
+		eventPrice = Main.requestNumberInt("-| Inserisci il prezzo del biglietto"); 								// TODO fare metodo per restituire un double
+		
+		event = new Concerto(eventName, eventDate, eventTickets, eventTime, eventPrice);
+		System.out.println("--| Il tuo Concerto è stato Inserito");	
+		System.out.println(event.toString());
+		
+		return event;
+			
+	}
 	
+
 }
+	
+
