@@ -22,20 +22,21 @@ public class ProgrammaEventi {
 		this.eventi.add(event);
 	}
 																			// un metodo che restituisce una lista con tutti gli eventi presenti in una certa data
-	public void searchEventFromDate(LocalDate date) {
+	public ArrayList<Evento> searchEventFromDate(LocalDate date) {						
 		
 		boolean thereIs = false;
-		
-		System.out.println("Ecco la lista degli eventi in data " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		ArrayList<Evento> events = new ArrayList<Evento>();
 		Collections.sort(this.eventi);
 		for (Evento event : this.eventi) {
-			if (event.getData().equals(date))
-			System.out.println(event);
-			thereIs = true;
+			if (event.getData().equals(date)) {
+				events.add(event);
+				thereIs = true;
+			}
 		}
 		if (!thereIs) {
 			System.out.println("non ci sono eventi in questa data");
 		}
+		return events;
 	}
 																			// un metodo che restituisce quanti eventi sono presenti nel programma
 	public int howManyEvents() {
