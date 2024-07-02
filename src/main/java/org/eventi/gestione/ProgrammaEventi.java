@@ -27,6 +27,7 @@ public class ProgrammaEventi {
 		boolean thereIs = false;
 		
 		System.out.println("Ecco la lista degli eventi in data " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		Collections.sort(this.eventi);
 		for (Evento event : this.eventi) {
 			if (event.getData().equals(date))
 			System.out.println(event);
