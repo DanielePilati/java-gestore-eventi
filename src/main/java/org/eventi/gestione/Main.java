@@ -11,36 +11,30 @@ public class Main {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-	/*	
-		Evento event;
-		String eventName;
-		int eventTickets;
-		LocalDate eventDate;
-		int userBookNum;
 																											
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
 		System.out.println("-| Prima di tutto inseriamo la data");
 
-		eventDate = Main.addInputDate();																	// chiedere all’utente di inserire una Data con tutti i parametri.
-		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
-		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
+		LocalDate eventDate = Main.addInputDate();															// chiedere all’utente di inserire una Data con tutti i parametri.
+		String eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
+		int eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
 		
-		event = new Evento(eventName, eventDate, eventTickets);
+		Evento event = new Evento(eventName, eventDate, eventTickets);
 		System.out.println("--| Il tuo evento è stato Istanziato");	
 		System.out.println(event.toString());
 																											// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
 		while (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N")) {										
-			userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+			int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
 			event.prenota(userBookNum);
 			event.checkPosti();
 		}			
 																											// Chiedere all’utente se e quanti posti vuole disdire e provare ad effettuarle	
 		while (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N")) {											
-			userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
+			int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
 			event.disdici(userBookNum);
 			event.checkPosti();
 		}
-*/		
+		
 		System.out.println("****\\ Fine Step 2 //****");
 																											// test delle classi Concerto e ProgrammaEventi
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
@@ -59,16 +53,14 @@ public class Main {
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
 	public static LocalDate addInputDate() {	
-			
+					
 		LocalDate date;
-		int eventDay = 0;
-		int eventMonth = 0;
-		int eventYear = 0;
 		
 		while (true) {	
 			
 			boolean isOk = false;
-																												// verifico se viene messo un giorno corretto 
+			
+			int eventDay = 0;																							// verifico se viene messo un giorno corretto 
 			while(!isOk) {
 				eventDay = Main.requestNumberInt("-| Inserisci il Giorno (in numeri) : ");
 				if (eventDay > 0 && eventDay <= 31) {
@@ -80,7 +72,8 @@ public class Main {
 				}
 			}
 			isOk = false;
-																												// verifico se viene messo il mese corretto 
+						
+			int eventMonth = 0;																							// verifico se viene messo il mese corretto 
 			while(!isOk) {
 				eventMonth = Main.requestNumberInt("-| Inserisci il Mese (in numeri) : ");
 				if (eventMonth > 0 && eventMonth <= 12) {
@@ -92,7 +85,8 @@ public class Main {
 				}
 			}
 			isOk = false;	
-																												// verifico se viene messo un anno reale 
+																														// verifico se viene messo un anno reale 
+			int eventYear = 0;
 			while(!isOk) {
 				eventYear = Main.requestNumberInt("-| Inserisci l'Anno (in numeri) : ");
 				if (eventYear <= 3000) {
@@ -216,12 +210,7 @@ public class Main {
 																											// creo un metodo per creare un Concerto dati valori in input
 	public static Concerto addConcert() {
 		
-		Concerto event;
-		String eventName;
 		LocalDate eventDate;
-		LocalTime eventTime;
-		int eventTickets;
-		double eventPrice;
 																											
 		System.out.println("--| Benvenuto nella creazione del Concerto");
 		System.out.println("-| Prima di tutto inseriamo la data");
@@ -233,12 +222,12 @@ public class Main {
 				break;
 			}
 		}
-		eventTime = Main.addInputTime();
-		eventName = Main.requestString("-| Inserisci ora il titolo del Concerto: ");		
-		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
-		eventPrice = Main.requestNumberDouble("-| Inserisci il prezzo del biglietto"); 								
+		LocalTime eventTime = Main.addInputTime();
+		String eventName = Main.requestString("-| Inserisci ora il titolo del Concerto: ");		
+		int eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
+		double eventPrice = Main.requestNumberDouble("-| Inserisci il prezzo del biglietto"); 								
 		
-		event = new Concerto(eventName, eventDate, eventTickets, eventTime, eventPrice);
+		Concerto event = new Concerto(eventName, eventDate, eventTickets, eventTime, eventPrice);
 		System.out.println("--| Il tuo Concerto è stato Inserito");	
 		System.out.println(event.toString());
 		
@@ -248,52 +237,42 @@ public class Main {
 																									// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
 	public static void wantAddBook(ProgrammaEventi programma) {
 		
-		 int userBookNum = 0;
-		 int code = 0;
-		 LocalDate date;
-		 ArrayList<Evento> checkList;
-		 
-		while (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N")) {
+		while (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N")) {
 			
-				System.out.println("-| Inserisci la data del Concerto a cui vuoi partecipare: ");
-				date = Main.addInputDate();
-				checkList = programma.searchEventFromDate(date);
-				System.out.println(checkList.toString());
-				
-				code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
-				for (Evento evento : checkList) {	
-					if (evento.getCodice() == code) {
-						System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
-						evento.checkPosti();
-						userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
-						evento.prenota(userBookNum);
-					}
+			System.out.println("-| Inserisci la data del Concerto a cui devi partecipare: ");
+			LocalDate date = Main.addInputDate();
+			ArrayList<Evento> checkList = programma.searchEventFromDate(date);
+			System.out.println(checkList.toString());
+
+			int code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
+			for (Evento evento : checkList) {	
+				if (evento.getCodice() == code) {
+					System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
+					evento.checkPosti();
+					int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+					evento.prenota(userBookNum);
 				}
-				
+			}
+		
 		}
 
 	}	
 																									// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
 	public static void wantRemoveBook(ProgrammaEventi programma) {
 
-		int userBookNum = 0;
-		int code = 0;
-		LocalDate date;
-		ArrayList<Evento> checkList;
-
 		while (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N")) {
 		
 			System.out.println("-| Inserisci la data del Concerto a cui devi partecipare: ");
-			date = Main.addInputDate();
-			checkList = programma.searchEventFromDate(date);
+			LocalDate date = Main.addInputDate();
+			ArrayList<Evento> checkList = programma.searchEventFromDate(date);
 			System.out.println(checkList.toString());
 
-			code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
+			int code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
 			for (Evento evento : checkList) {	
 				if (evento.getCodice() == code) {
 					System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
 					evento.checkPosti();
-					userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+					int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
 					evento.disdici(userBookNum);
 				}
 			}
