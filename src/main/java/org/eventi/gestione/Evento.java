@@ -72,10 +72,13 @@ public class Evento implements Comparable<Evento> {
 		
 		if (postiLiberi >= number) {
 			this.postiPrenotati += number;
-			System.out.println("Posti Prenotato");
+			System.out.println("Posti Prenotati");
 		} else {
 			System.out.println("non ci sono " + number + " posti disponibili");
-			}																						
+			}	
+		System.out.println("Posti Totali: " + this.postiTotali);
+		System.out.println("Posti Prenotati: " + this.postiPrenotati);
+		System.out.println("Posti Disponibili: " + (this.postiTotali - this.postiPrenotati));
 	}
 																								// metodo per Stampare a video il numero di posti prenotati e quelli disponibili
 	public void checkPosti() {
@@ -88,7 +91,7 @@ public class Evento implements Comparable<Evento> {
 	public void disdici(Date data) {  
 		
 		if (data.before(Calendar.getInstance().getTime())) {	
-			System.out.println("-| L'evento è gia passato");										// Se l’evento è già passato deve restituire un messaggio di avviso
+			System.out.println("-| L'evento è gia passato");									// Se l’evento è già passato deve restituire un messaggio di avviso
 		} else {
 			if (this.postiPrenotati > 0 ) {		
 				this.postiPrenotati++;
