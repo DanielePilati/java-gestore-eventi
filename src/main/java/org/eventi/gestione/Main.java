@@ -58,10 +58,7 @@ public class Main {
 		System.out.println(listaConcerti.toString());
 		while (Main.wantDoIt("--| Vuoi cercare un concerto? S / N")) {											
 			listaConcerti.searchEventFromDate(addInputDate());
-		}
-		
-		
-		
+		}																											
 		
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
@@ -231,7 +228,7 @@ public class Main {
 			}
 		}
 		eventTime = Main.addInputTime();
-		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
+		eventName = Main.requestString("-| Inserisci ora il titolo del Concerto: ");		
 		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
 		eventPrice = Main.requestNumberDouble("-| Inserisci il prezzo del biglietto"); 								
 		
