@@ -26,7 +26,7 @@ public class Main {
 				break;
 			}
 		}
-	
+		
 		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
 		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
 		
@@ -45,6 +45,8 @@ public class Main {
 			event.disdici(userBookNum);
 			event.checkPosti();
 		}
+		
+		System.out.println("****\\ Fine Step 2 //****");
 
 /*																											// test classe Concerto
 		Concerto concerto = new Concerto("Concertazzo", addInputDate(), 10, addInputTime(), 20.50 );	
@@ -97,7 +99,7 @@ public class Main {
 																											// verifico se viene messo un anno reale 
 		while(!isOk) {
 			eventYear = Main.requestNumberInt("-| Nell'Anno (in numeri) : ");
-			if (eventYear > 1900 && eventYear <= 3000) {
+			if (eventYear <= 3000) {
 				isOk = true;
 				break;
 			} else {
@@ -123,7 +125,7 @@ public class Main {
 	public static int requestNumberInt(String request) {
 		
 		int number = 0;
-		while (number == 0){
+		while (number <= 0){
 			System.out.println(request);
 			try {
 				number =  scanner.nextInt();
