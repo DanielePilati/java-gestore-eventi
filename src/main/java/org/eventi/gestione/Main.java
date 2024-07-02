@@ -242,18 +242,19 @@ public class Main {
 		System.out.println(checkList.toString());
 
 		int code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
-		for (Evento evento : checkList) {	
-			
+		for (Evento evento : checkList) {		
 			if (evento.getCodice() == code) {
 				System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
 				evento.checkPosti();			
-				if(wantDoIt("Premi P se vuoi Prenotare o D se vuoi Disdire","P","D")) {
-					int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
-					evento.prenota(userBookNum);
-				} else {
-					int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
-					evento.disdici(userBookNum);
+				do {
+					if(wantDoIt("Premi P se vuoi Prenotare o D se vuoi Disdire","P","D")) {
+						int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+						evento.prenota(userBookNum);
+					} else {
+						int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
+						evento.disdici(userBookNum);
 					}
+				} while (wantDoIt("-| Vuoi Disdire o Prenotare ancora? S / N","S","N"));	
 			}
 		}	
 	}	
