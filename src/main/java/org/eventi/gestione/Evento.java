@@ -52,9 +52,9 @@ public class Evento implements Comparable<Evento> {
 		this.postiPrenotati = postiPrenotati;
 	}
 																								// aggiunge un posto prenotato
-	public void prenota(Date data) { 
+	public void prenota(LocalDate data) { 
 		
-		if (data.before(Calendar.getInstance().getTime())) {	
+		if (data.isBefore(LocalDate.now())) {	
 			System.out.println("L'evento è gia passato");										// Se l’evento è già passato deve restituire un messaggio di avviso
 		} else {
 			if (this.postiPrenotati < this.postiTotali) {		
