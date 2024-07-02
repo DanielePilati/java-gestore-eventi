@@ -165,6 +165,22 @@ public class Main {
 		}	
 		return number;
 	}
+																											// invia su terminale una richiesta e restituisce il valore double preso in input.
+	public static double requestNumberDouble(String request) {
+
+		double number = 0.0D;
+		while (number <= 0){
+			System.out.println(request);
+			try {
+				number =  scanner.nextDouble();
+			} catch (Exception InputMismatchException) {
+				System.out.println("-| Inserisci un numero |-");
+			} finally {
+				scanner.nextLine();
+			}				
+		}	
+		return number;
+	}
 																											// invia su terminale una richiesta e restituisce il valore Stringa preso in input.
 	public static String requestString(String request) {	
 		
@@ -217,7 +233,7 @@ public class Main {
 		eventTime = Main.addInputTime();
 		eventName = Main.requestString("-| Inserisci ora il titolo dell'Evento: ");		
 		eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
-		eventPrice = Main.requestNumberInt("-| Inserisci il prezzo del biglietto"); 								// TODO fare metodo per restituire un double
+		eventPrice = Main.requestNumberDouble("-| Inserisci il prezzo del biglietto"); 								
 		
 		event = new Concerto(eventName, eventDate, eventTickets, eventTime, eventPrice);
 		System.out.println("--| Il tuo Concerto è stato Inserito");	
