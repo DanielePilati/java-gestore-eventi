@@ -206,8 +206,8 @@ public class Main {
 		}
 		return want;  
 	}
-																													// **** metodi aggiuntivi *****
-																													// creo un metodo per creare un Concerto
+																													
+																													// creo un metodo per creare un Concerto dati valori in input
 	public static Concerto addConcert() {
 		
 		Concerto event;
