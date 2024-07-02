@@ -2,7 +2,6 @@ package org.eventi.gestione;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -203,8 +202,7 @@ public class Main {
 			}
 		}
 		return want;  
-	}
-																													
+	}																													
 																											// creo un metodo per creare un Concerto dati valori in input
 	public static Concerto addConcert() {
 		
@@ -232,7 +230,7 @@ public class Main {
 		return event;
 			
 	}
-																									// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
+																											// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
 	public static void addRemoveBook(ProgrammaEventi programma) {
 				
 		System.out.println("-| Inserisci la data del Concerto a cui devi partecipare: ");
