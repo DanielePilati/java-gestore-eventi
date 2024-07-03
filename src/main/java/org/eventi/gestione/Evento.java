@@ -117,10 +117,10 @@ public class Evento implements Comparable<Evento> {
 
 	@Override   																				// l’override del metodo toString() 
 	public String toString() { 
-		return "\n" + this.dateFormatter(this.data) + " - "+ this.titolo;  // in modo che venga restituita una stringa contenente: data formattata - titolo
+		return "\n" + Evento.dateFormatter(this.data) + " - "+ this.titolo;  // in modo che venga restituita una stringa contenente: data formattata - titolo
 	}
 																								// aggiunto metodo per formattare la data
-	public String dateFormatter (LocalDate date) {								
+	public static String dateFormatter (LocalDate date) {								
 		return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	

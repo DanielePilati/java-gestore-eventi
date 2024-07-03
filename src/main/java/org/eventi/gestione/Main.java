@@ -250,7 +250,7 @@ public class Main {
 				
 		System.out.println("-| Inserisci la data del Concerto a cui devi partecipare: ");
 		LocalDate date = Main.addInputDate();
-		ProgrammaEventi temp = new ProgrammaEventi("Temporaneo");
+		ProgrammaEventi temp = new ProgrammaEventi("Eventi in data " + Evento.dateFormatter(date));
 		temp.setEventi(programma.searchEventFromDate(date));
 		System.out.println(temp.toString());
 
@@ -260,6 +260,7 @@ public class Main {
 				System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
 				evento.checkPosti();			
 				do {
+					evento.checkPosti();
 					if(wantDoIt("Premi P se vuoi Prenotare o D se vuoi Disdire","P","D")) {
 						int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
 						evento.prenota(userBookNum);
