@@ -56,7 +56,7 @@ public class Main {
 		while (true) {	
 			
 			boolean isOk = false;
-			
+			 
 			int eventDay = 0;																							// verifico se viene messo un giorno corretto 
 			while(!isOk) {
 				eventDay = Main.requestNumberInt("-| Inserisci il Giorno (in numeri) : ");
@@ -109,12 +109,10 @@ public class Main {
 	}
 																											// chiede all’utente di inserire l'ora con tutti i parametri.
 	public static LocalTime addInputTime() {
-		
-		int eventHour = 0;
-		int eventMinutes = 0;
-		
+
 		boolean isOk = false;
-																											// verifico se viene messa l'ora correttamente
+					
+		int eventHour = 0;																					// verifico se viene messa l'ora correttamente
 		while(!isOk) {
 			eventHour = Main.requestNumberInt("-| Inserisci l'Ora (in numeri) : ");
 			if (eventHour <= 24) {
@@ -126,7 +124,8 @@ public class Main {
 			}
 		}
 		isOk = false;	
-																											// verifico vengono messi i minuti correttamente 
+		
+		int eventMinutes = 0;																				// verifico vengono messi i minuti correttamente 
 		while(!isOk) {
 			eventMinutes = Main.requestNumberInt("-| Inserisci i Minuti (in numeri) : ");
 			if (eventMinutes <= 60) {
@@ -152,7 +151,7 @@ public class Main {
 			try {
 				number =  scanner.nextInt();
 			} catch (Exception InputMismatchException) {
-				System.out.println("-| Inserisci un numero |-");
+				System.out.println("-| Inserisci un numero maggiore di 0 |-");
 			} finally {
 				scanner.nextLine();
 			}				
@@ -168,7 +167,7 @@ public class Main {
 			try {
 				number =  scanner.nextDouble();
 			} catch (Exception InputMismatchException) {
-				System.out.println("-| Inserisci un numero |-");
+				System.out.println("-| Inserisci un numero maggiore di 0,0 |-");
 			} finally {
 				scanner.nextLine();
 			}				

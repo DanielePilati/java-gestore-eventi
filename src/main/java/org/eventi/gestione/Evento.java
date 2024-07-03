@@ -144,7 +144,7 @@ public class Evento implements Comparable<Evento> {
 	
 	public static int generateRandomCode() {
 		int code;	
-		code = (int) (Math.random()* (100 - 0) + 1) + 0;
+		code = (int) (Math.random()* (1000 - 0) + 1) + 0;
 		return code;
 	}
 
