@@ -47,6 +47,7 @@ public class Main {
 		if (wantDoIt("-| Vuoi effettuare o disdire prenotazioni? S / N","S","N")) {
 			addRemoveBook(listaConcerti);
 		}
+		scanner.close();
 	}
 																											// chiede all’utente di inserire una Data con tutti i parametri.
 	public static LocalDate addInputDate() {	
