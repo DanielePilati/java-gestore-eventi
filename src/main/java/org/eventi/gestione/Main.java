@@ -86,7 +86,7 @@ public class Main {
 			int eventYear = 0;
 			while(!isOk) {
 				eventYear = Main.requestNumberInt("-| Inserisci l'Anno (in numeri) : ");
-				if (eventYear <= 3000) {
+				if (eventYear >= 1900 && eventYear <= 2200) {
 					isOk = true;
 					break;
 				} else {
@@ -145,32 +145,46 @@ public class Main {
 																											// invia su terminale una richiesta e restituisce il valore intero preso in input.
 	public static int requestNumberInt(String request) {
 		
-		int number = 0;
+		int number = -1;
 		while (number <= 0){
 			System.out.println(request);
 			try {
 				number =  scanner.nextInt();
 			} catch (Exception InputMismatchException) {
-				System.out.println("-| Inserisci un numero maggiore di 0 |-");
+				System.out.println("-| Inserisci un numero |-");
 			} finally {
 				scanner.nextLine();
-			}				
+			}	
+			if (number == 0) {
+				System.out.println("-| Inserisci un numero maggiore di 0 |-");
+			} else {
+				if (number < 0) {
+					System.out.println("-| Inserisci un numero maggiore di 0 |-");
+				}
+			}
 		}	
 		return number;
 	}
 																											// invia su terminale una richiesta e restituisce il valore double preso in input.
 	public static double requestNumberDouble(String request) {
 
-		double number = 0.0D;
-		while (number <= 0){
+		double number = -1D;
+		while (number <= 0D){
 			System.out.println(request);
 			try {
 				number =  scanner.nextDouble();
 			} catch (Exception InputMismatchException) {
-				System.out.println("-| Inserisci un numero maggiore di 0,0 |-");
+				System.out.println("-| Inserisci un numero |-");
 			} finally {
 				scanner.nextLine();
-			}				
+			}
+			if (number == 0D) {
+				System.out.println("-| Inserisci un numero maggiore di 0,0 |-");
+			} else {
+				if (number < 0D) {
+					System.out.println("-| Inserisci un numero maggiore di 0,0 |-");
+				}
+			}
 		}	
 		return number;
 	}
@@ -213,6 +227,7 @@ public class Main {
 			eventDate = Main.addInputDate();
 			if (eventDate.isBefore(LocalDate.now())) {
 				System.out.println("-| Data Passata |-");	
+				System.out.println("-| Reinserisci una data corretta |-");	
 			} else {
 				break;
 			}
