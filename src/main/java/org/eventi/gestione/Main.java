@@ -9,7 +9,7 @@ public class Main {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-																											
+	/*																										
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
 		System.out.println("-| Prima di tutto inseriamo la data");
 
@@ -34,7 +34,7 @@ public class Main {
 		}
 		
 		System.out.println("****\\ Fine Step 2 //****");
-																											// test delle classi Concerto e ProgrammaEventi
+	*/																										// test delle classi Concerto e ProgrammaEventi
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
 		System.out.println("-------------------------");
 		System.out.println("-- Benvenuto Nella gestione concerti");
@@ -115,7 +115,7 @@ public class Main {
 		int eventHour = 0;																					// verifico se viene messa l'ora correttamente
 		while(!isOk) {
 			eventHour = Main.requestNumberInt("-| Inserisci l'Ora (in numeri) : ");
-			if (eventHour <= 24) {
+			if (eventHour <= 23) {
 				isOk = true;
 				break;
 			} else {
@@ -128,11 +128,11 @@ public class Main {
 		int eventMinutes = 0;																				// verifico vengono messi i minuti correttamente 
 		while(!isOk) {
 			eventMinutes = Main.requestNumberInt("-| Inserisci i Minuti (in numeri) : ");
-			if (eventMinutes <= 60) {
+			if (eventMinutes <= 59) {
 				isOk = true;
 				break;
 			} else {
-				System.out.println("-| Inserisci un Numero da 0 a 60 |-");
+				System.out.println("-| Inserisci un Numero da 0 a 59 |-");
 				isOk = false;
 			}
 		}
@@ -254,23 +254,31 @@ public class Main {
 		temp.setEventi(programma.searchEventFromDate(date));
 		System.out.println(temp.toString());
 
-		int code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
-		for (Evento evento : temp.getEventi()) {		
-			if (evento.getCodice() == code) {
-				System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
-				evento.checkPosti();			
-				do {
-					evento.checkPosti();
-					if(wantDoIt("Premi P se vuoi Prenotare o D se vuoi Disdire","P","D")) {
-						int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
-						evento.prenota(userBookNum);
-					} else {
-						int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
-						evento.disdici(userBookNum);
-					}
-				} while (wantDoIt("-| Vuoi Disdire o Prenotare ancora? S / N","S","N"));	
+		boolean validCode = false;
+		while (!validCode) {
+			int code = Main.requestNumberInt("-| Inserisci il Codice del Concerto: ");
+			for (Evento evento : temp.getEventi()) {
+				if (evento.getCodice() == code) {
+					validCode = true;
+					System.out.println("Codice Evento: " + evento.getCodice() + "\n Evento: " + evento.getTitolo());
+					evento.checkPosti();			
+					do {
+						evento.checkPosti();
+						if(wantDoIt("Premi P se vuoi Prenotare o D se vuoi Disdire","P","D")) {
+							int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
+							evento.prenota(userBookNum);
+						} else {
+							int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
+							evento.disdici(userBookNum);
+						}
+					} while (wantDoIt("-| Vuoi Disdire o Prenotare ancora? S / N","S","N"));	
+				}	
 			}
-		}	
+			if (!validCode) {
+				System.out.println("-| Inserisci un Codice del Concerto valido! |- ");
+				System.out.println(temp.toString());
+			}
+		}
 	}	
 
 }
