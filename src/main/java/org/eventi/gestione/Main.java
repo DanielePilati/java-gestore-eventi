@@ -9,7 +9,7 @@ public class Main {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-	/*																										
+																											
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
 		System.out.println("-| Prima di tutto inseriamo la data");
 
@@ -34,7 +34,7 @@ public class Main {
 		}
 		
 		System.out.println("****\\ Fine Step 2 //****");
-	*/																										// test delle classi Concerto e ProgrammaEventi
+																											// test delle classi Concerto e ProgrammaEventi
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
 		System.out.println("-------------------------");
 		System.out.println("-- Benvenuto Nella gestione concerti");
@@ -277,6 +277,7 @@ public class Main {
 			if (!validCode) {
 				System.out.println("-| Inserisci un Codice del Concerto valido! |- ");
 				System.out.println(temp.toString());
+				
 			}
 		}
 	}	
