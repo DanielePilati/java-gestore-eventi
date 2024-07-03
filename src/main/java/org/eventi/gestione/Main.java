@@ -21,16 +21,16 @@ public class Main {
 		System.out.println("--| Il tuo evento è stato Istanziato");	
 		System.out.println(event.toString());
 																											// chiede all’utente se e quante prenotazioni vuole fare e provare ad effettuarle			
-		while (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni? S / N","S","N")) {										
+		while (Main.wantDoIt("--| Vuoi effettuare una o piu prenotazioni nell Evento: " + event.toString() + " ? \n -| S = Si / N = No |-","S","N")) {
+			event.checkPosti();
 			int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi effettuare: ");
 			event.prenota(userBookNum);
-			event.checkPosti();
 		}			
 																											// Chiedere all’utente se e quanti posti vuole disdire e provare ad effettuarle	
-		while (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni? S / N","S","N")) {											
+		while (Main.wantDoIt("--| Vuoi disdire una o piu prenotazioni nell Evento: "+ event.toString() + " ? \n -| S = Si / N = No |-","S","N")) {	
+			event.checkPosti();
 			int userBookNum = Main.requestNumberInt("-| Inserisci il numero di prenotazioni che vuoi disdire: ");
 			event.disdici(userBookNum);
-			event.checkPosti();
 		}
 		
 		System.out.println("****\\ Fine Step 2 //****");
@@ -144,24 +144,25 @@ public class Main {
 	}
 																											// invia su terminale una richiesta e restituisce il valore intero preso in input.
 	public static int requestNumberInt(String request) {
-		
+
 		int number = -1;
+		
 		while (number <= 0){
+			boolean isCatched = false;
 			System.out.println(request);
 			try {
 				number =  scanner.nextInt();
 			} catch (Exception InputMismatchException) {
 				System.out.println("-| Inserisci un numero |-");
+				isCatched = true;		
 			} finally {
 				scanner.nextLine();
-			}	
-			if (number == 0) {
-				System.out.println("-| Inserisci un numero maggiore di 0 |-");
-			} else {
-				if (number < 0) {
-					System.out.println("-| Inserisci un numero maggiore di 0 |-");
-				}
 			}
+			if (!isCatched) {
+				if (number <= 0) {
+					System.out.println("-| Inserisci un numero maggiore di 0 |-");		
+				}					
+			} 
 		}	
 		return number;
 	}
@@ -170,21 +171,21 @@ public class Main {
 
 		double number = -1D;
 		while (number <= 0D){
+			boolean isCatched = false;
 			System.out.println(request);
 			try {
 				number =  scanner.nextDouble();
 			} catch (Exception InputMismatchException) {
 				System.out.println("-| Inserisci un numero |-");
+				isCatched = true;
 			} finally {
 				scanner.nextLine();
 			}
-			if (number == 0D) {
-				System.out.println("-| Inserisci un numero maggiore di 0,0 |-");
-			} else {
-				if (number < 0D) {
-					System.out.println("-| Inserisci un numero maggiore di 0,0 |-");
-				}
-			}
+			if (!isCatched) {
+				if (number <= 0) {
+					System.out.println("-| Inserisci un numero maggiore di 0,0 |-");		
+				}					
+			} 
 		}	
 		return number;
 	}
@@ -211,7 +212,7 @@ public class Main {
 				want = false ;
 				break;
 			} else {
-				renspose = Main.requestString("-| inserisci " + firstChoice.toUpperCase() + " o " + secondChoice.toUpperCase() + "|-").toUpperCase();
+				renspose = Main.requestString("-| inserisci " + firstChoice.toUpperCase() + " o " + secondChoice.toUpperCase() + " |-").toUpperCase();
 			}
 		}
 		return want;  

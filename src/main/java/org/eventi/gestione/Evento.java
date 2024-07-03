@@ -72,20 +72,16 @@ public class Evento implements Comparable<Evento> {
 	public void prenota(int number) {
 		
 		int postiLiberi = this.postiTotali - this.postiPrenotati;
-		
 		if (postiLiberi >= number) {
 			this.postiPrenotati += number;
 			System.out.println("Posti Prenotati");
 		} else {
-			System.out.println("non ci sono " + number + " posti disponibili");
+			System.out.println(" Non ci sono " + number + " posti disponibili ");
 			}	
-		System.out.println("Posti Totali: " + this.postiTotali);
-		System.out.println("Posti Prenotati: " + this.postiPrenotati);
-		System.out.println("Posti Disponibili: " + (this.postiTotali - this.postiPrenotati));
 	}
 																								// metodo per Stampare a video il numero di posti prenotati e quelli disponibili
 	public void checkPosti() {
-		
+		System.out.println("Elenco Prenotazioni dell'Evento: "+ this.titolo);
 		System.out.println("Posti Totali: " + this.postiTotali);
 		System.out.println("Posti Prenotati: " + this.postiPrenotati);
 		System.out.println("Posti Disponibili: " + (this.postiTotali - this.postiPrenotati));
@@ -106,18 +102,22 @@ public class Evento implements Comparable<Evento> {
 	}
 																								// faccio un overload del metodo prendendo in input il numero di prenotazioni da disdire sul test nel main
 	public void disdici(int number) {
-		
-		if (this.postiPrenotati >= number) {
-			this.postiPrenotati -= number;
-			System.out.println("Posti Disdetti");
+		if(this.postiPrenotati == 0) {
+			System.out.println("Non ci sono prenotazioni da disdire");
 		} else {
-			System.out.println("Ci sono solo " + this.postiPrenotati + " posti prenotati");
-		}																						
+			if (this.postiPrenotati >= number) {
+				this.postiPrenotati -= number;
+				System.out.println("Posti Disdetti");
+			} else {
+				System.out.println("Ci sono " + this.postiPrenotati + " posti prenotati");
+			}	
+		}
+																					
 	}
 
 	@Override   																				// l’override del metodo toString() 
 	public String toString() { 
-		return "\n" + this.dateFormatter(this.data) + " - "+ this.titolo + " Codice: ";  // in modo che venga restituita una stringa contenente: data formattata - titolo
+		return "\n" + this.dateFormatter(this.data) + " - "+ this.titolo;  // in modo che venga restituita una stringa contenente: data formattata - titolo
 	}
 																								// aggiunto metodo per formattare la data
 	public String dateFormatter (LocalDate date) {								
