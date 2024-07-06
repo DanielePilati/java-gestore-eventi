@@ -43,7 +43,7 @@ public class Concerto extends Evento {
 		
 		DecimalFormat decfor = new DecimalFormat("0.00");  
 		
-		return  decfor .format(prezzo);
+		return  decfor .format(this.prezzo);
 	}
 																											//  metodo per formattare anche l'ora
 	public String dateTimeFormatter (LocalDate date, LocalTime time) {
