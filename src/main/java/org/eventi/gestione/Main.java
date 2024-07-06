@@ -35,13 +35,13 @@ public class Main {
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
 		System.out.println("-------------------------");
 		System.out.println("-- Benvenuto Nella gestione concerti");
-		while (Main.wantDoIt("--| Vuoi inserire un nuovo concerto? S / N","S","N")) {											
+		while (Main.wantDoIt("--| Vuoi inserire un nuovo concerto? \\n -| S = Si / N = No |-","S","N")) {											
 			listaConcerti.addEvent(Main.addConcert());
 		}
 		System.out.println("ci sono " + listaConcerti.howManyEvents() + " eventi in: " + listaConcerti.getTitolo() );
 		System.out.println(listaConcerti.toString());
 		
-		if (wantDoIt("-| Vuoi effettuare o disdire prenotazioni? S / N","S","N")) {
+		if (wantDoIt("-| Vuoi effettuare o disdire prenotazioni? \\n -| S = Si / N = No |-","S","N")) {
 			addRemoveBook(listaConcerti);
 		}
 	}
