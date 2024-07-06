@@ -119,7 +119,7 @@ public class Main {
 				isOk = true;
 				break;
 			} else {
-				System.out.println("-| Inserisci un Numero da 0 a 24 |-");
+				System.out.println("-| Inserisci un Numero da 0 a 23 |-");
 				isOk = false;
 			}
 		}
