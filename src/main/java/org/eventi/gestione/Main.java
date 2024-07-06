@@ -201,18 +201,18 @@ public class Main {
 	public static boolean wantDoIt(String request, String firstChoice, String secondChoice) {
 
 		boolean want = false;
-		String renspose = Main.requestString(request).toUpperCase();
+		String rensponse = Main.requestString(request).toUpperCase();
 		
 		while (true) {
-			if (renspose.equals(firstChoice.toUpperCase())) {
+			if (rensponse.equals(firstChoice.toUpperCase())) {
 				want = true;
 				break;
 			} 
-			if (renspose.equals(secondChoice.toUpperCase())) {
+			if (rensponse.equals(secondChoice.toUpperCase())) {
 				want = false ;
 				break;
 			} else {
-				renspose = Main.requestString("-| inserisci " + firstChoice.toUpperCase() + " o " + secondChoice.toUpperCase() + " |-").toUpperCase();
+				rensponse = Main.requestString("-| inserisci " + firstChoice.toUpperCase() + " o " + secondChoice.toUpperCase() + " |-").toUpperCase();
 			}
 		}
 		return want;  
