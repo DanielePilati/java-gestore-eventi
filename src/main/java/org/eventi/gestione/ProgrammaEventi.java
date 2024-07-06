@@ -24,7 +24,7 @@ public class ProgrammaEventi {
 		while (!isChanged) {
 			for (Evento evento : this.eventi) {
 				if (evento.getCodice() == event.getCodice()){
-					event.setCodice(Evento.generateRandomCode());
+					event.setCodice(Evento.generateRandomCodeBetween(1000,0));
 					isChanged = true;
 				} else {
 					isChanged = false;
@@ -41,7 +41,6 @@ public class ProgrammaEventi {
 		
 		boolean thereIs = false;
 		ArrayList<Evento> events = new ArrayList<Evento>();
-		Collections.sort(this.eventi);
 		for (Evento event : this.eventi) {
 			if (event.getData().equals(date)) {
 				events.add(event);
@@ -85,4 +84,8 @@ public class ProgrammaEventi {
 	public void setEventi(ArrayList<Evento> eventi) {
 		this.eventi = eventi;
 	}
+	public String getTitolo() {
+		return titolo;
+	}
+
 }

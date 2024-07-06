@@ -35,18 +35,18 @@ public class Concerto extends Evento {
 	
 	@Override   																							// l’override del metodo toString() 
 	public String toString() { 	
-		return this.dateTimeFormatter(super.getData(), this.ora) + " - " + super.getTitolo() + " - " + this.priceFormatter(this.prezzo) + " codice: " + super.getCodice();   
+		return Concerto.dateTimeFormatter(super.getData(), this.ora) + " - " + super.getTitolo() + " - " + this.priceFormatter(this.prezzo) + " codice: " + super.getCodice();   
 		// in modo che venga restituita una stringa del tipo:  data e ora formattata - titolo - prezzo formattato  // aggiunto codice per test ricerca evento dato  codice
 	}
 	
-	public String priceFormatter (double price) {															// aggiunto metodo per formattare il prezzo
+	private String priceFormatter (double price) {															// aggiunto metodo per formattare il prezzo
 		
 		DecimalFormat decfor = new DecimalFormat("0.00");  
 		
 		return  decfor .format(this.prezzo);
 	}
 																											//  metodo per formattare anche l'ora
-	public String dateTimeFormatter (LocalDate date, LocalTime time) {
+	public static String dateTimeFormatter (LocalDate date, LocalTime time) {
 		
 		LocalDateTime dateTime = time.atDate(date);
 		

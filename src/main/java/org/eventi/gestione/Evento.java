@@ -15,7 +15,7 @@ public class Evento implements Comparable<Evento> {
 	
 	public Evento(String titolo, LocalDate data, int postiTotali) {								//Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore
 		
-		this.codice = Evento.generateRandomCode();
+		this.codice = Evento.generateRandomCodeBetween(1000, 0);
 		
 		this.titolo = titolo;;
 				
@@ -53,6 +53,14 @@ public class Evento implements Comparable<Evento> {
 																								// numero di posti prenotati sia solo in lettura
 	public void setPostiPrenotati(int postiPrenotati) {
 		this.postiPrenotati = postiPrenotati;
+	}
+	
+	public int getCodice() {
+		return this.codice;
+	}
+	
+	public void setCodice(int codice) {
+		this.codice = codice;
 	}
 																								// aggiunge un posto prenotato
 	public void prenota(LocalDate data) { 
@@ -134,17 +142,9 @@ public class Evento implements Comparable<Evento> {
 		}
 	}
 	
-	public int getCodice() {
-		return this.codice;
-	}
-	
-	public void setCodice(int codice) {
-		this.codice = codice;
-	}
-	
-	public static int generateRandomCode() {
+	public static int generateRandomCodeBetween(int max, int min) {
 		int code;	
-		code = (int) (Math.random()* (1000 - 0) + 1) + 0;
+		code = (int) (Math.random()* (max - min) + 1) + max;
 		return code;
 	}
 
