@@ -145,7 +145,7 @@ public class Main {
 																											// invia su terminale una richiesta e restituisce il valore intero preso in input.
 	public static int requestNumberInt(String request) {
 
-		int number = -1;
+		int number = 0;
 		
 		while (number <= 0){
 			boolean isCatched = false;
@@ -169,7 +169,7 @@ public class Main {
 																											// invia su terminale una richiesta e restituisce il valore double preso in input.
 	public static double requestNumberDouble(String request) {
 
-		double number = -1D;
+		double number = 0D;
 		while (number <= 0D){
 			boolean isCatched = false;
 			System.out.println(request);
@@ -182,7 +182,7 @@ public class Main {
 				scanner.nextLine();
 			}
 			if (!isCatched) {
-				if (number <= 0) {
+				if (number <= 0D) {
 					System.out.println("-| Inserisci un numero maggiore di 0,0 |-");		
 				}					
 			} 
