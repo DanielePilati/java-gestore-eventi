@@ -99,7 +99,8 @@ public class Main {
 			date = LocalDate.of(eventYear, eventMonth, eventDay);
 		
 			if (date.isBefore(LocalDate.now())) {
-				System.out.println("-| Data Passata |-");	
+				System.out.println("-| Data Passata |-");
+				System.out.println("-| Reinserisci una data corretta |-");
 			} else {
 				break;
 			}
@@ -219,20 +220,11 @@ public class Main {
 	}																													
 																											// creo un metodo per creare un Concerto dati valori in input
 	public static Concerto addConcert() {
-		
-		LocalDate eventDate;
-																											
+																								
 		System.out.println("--| Benvenuto nella creazione del Concerto");
 		System.out.println("-| Prima di tutto inseriamo la data");
-		while (true) {
-			eventDate = Main.addInputDate();
-			if (eventDate.isBefore(LocalDate.now())) {
-				System.out.println("-| Data Passata |-");	
-				System.out.println("-| Reinserisci una data corretta |-");	
-			} else {
-				break;
-			}
-		}
+		
+		LocalDate eventDate = Main.addInputDate();
 		LocalTime eventTime = Main.addInputTime();
 		String eventName = Main.requestString("-| Inserisci ora il titolo del Concerto: ");		
 		int eventTickets = Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : ");
