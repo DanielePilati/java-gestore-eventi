@@ -226,7 +226,6 @@ public class Main {
 		double eventPrice = Main.requestNumberDouble("-| Inserisci il Prezzo del biglietto"); 									
 		Concerto event = new Concerto(eventName, eventDate, eventTickets, eventTime, eventPrice);
 		System.out.println("--| Il tuo Concerto: " + event.toString() + " è stato Inserito");	
-		System.out.println();
 		return event;
 			
 	}
