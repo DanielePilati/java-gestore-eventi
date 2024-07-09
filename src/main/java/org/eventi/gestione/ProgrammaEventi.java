@@ -26,6 +26,7 @@ public class ProgrammaEventi {
 				if (evento.getCodice() == event.getCodice()){
 					event.setCodice(Evento.generateRandomCodeBetween(1000,0));
 					isChanged = true;
+					break;
 				} else {
 					isChanged = false;
 				}
