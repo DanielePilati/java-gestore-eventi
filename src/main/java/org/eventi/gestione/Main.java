@@ -12,7 +12,7 @@ public class Main {
 																											
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
 																											// chiedo all’utente di inserire un nuovo evento con tutti i parametri.	
-		Evento event = new Evento( 	Main.requestString("-| Inserisci ora il titolo dell'Evento: "),
+		Evento event = new Evento( 	Main.requestString("-| Inserisci il titolo dell'Evento: "),
 									Main.addInputDate(),
 									Main.requestNumberInt("-| Numero di Prenotazioni Disponibili : "));
 		System.out.println(event.toString());
@@ -33,8 +33,8 @@ public class Main {
 																											// test delle classi Concerto e ProgrammaEventi
 		ProgrammaEventi listaConcerti = new ProgrammaEventi("Lista Concerti");
 		System.out.println("-------------------------");
-		System.out.println("-- Benvenuto Nella gestione concerti");
-		while (Main.wantDoIt("--| Vuoi inserire un nuovo concerto? \n -| S = Si / N = No |-","S","N")) {											
+		System.out.println("-- Benvenuto nella gestione Concerti");
+		while (Main.wantDoIt("--| Vuoi inserire un nuovo Concerto? \n -| S = Si / N = No |-","S","N")) {											
 			listaConcerti.addEvent(Main.addConcert());
 		}
 		System.out.println("ci sono " + listaConcerti.howManyEvents() + " eventi in: " + listaConcerti.getTitolo() );
