@@ -11,7 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 																											
 		System.out.println("--| Benvenuto nella creazione dell'Evento");
-		System.out.println("-| Prima di tutto inseriamo la data");
 																											// chiedo all’utente di inserire un nuovo evento con tutti i parametri.	
 		Evento event = new Evento( 	Main.requestString("-| Inserisci ora il titolo dell'Evento: "),
 									Main.addInputDate(),
