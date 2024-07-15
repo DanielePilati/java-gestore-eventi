@@ -40,28 +40,21 @@ public class ProgrammaEventi {
 																			// un metodo che restituisce una lista con tutti gli eventi presenti in una certa data
 	public ArrayList<Evento> searchEventFromDate(LocalDate date) {						
 		
-		boolean thereIs = false;
 		ArrayList<Evento> events = new ArrayList<Evento>();
 		for (Evento event : this.eventi) {
 			if (event.getData().equals(date)) {
 				events.add(event);
-				thereIs = true;
 			}
 		}
-		if (!thereIs) {
+		if (events.size() == 0) {
 			System.out.println("non ci sono eventi in questa data");
 		}
 		return events;
 	}
 																			// un metodo che restituisce quanti eventi sono presenti nel programma
 	public int howManyEvents() {
-	
-		int counter = 0;
-		
-		for (@SuppressWarnings("unused")Evento event : this.eventi) {
-			counter++;
-		}
-		return counter;
+
+		return this.eventi.size();
 	}
 																			// un metodo che svuota la lista di eventi
 	public void resetEventList () {
